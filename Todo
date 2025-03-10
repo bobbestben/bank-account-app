@@ -7,6 +7,33 @@ Tech Stack
 -DB or server storage?
 -FE react?
 
+
 Todo:
 Setup Github
-OOP MVC
+Brute force:
+Main Menu
+Deposit
+Withdraw
+Print
+-refactor the scanner
+-handle incorrect input
+-probably need to change to Springboot app
+Banking services - to calculate amount
+
+Refactor to OOP/MVC
+Interfaces/Abstract methods
+Close scanner?
+Security features
+
+
+
+
+
+
+
+
+
+
+feat fix chore docs improvement
+style refactor perf test bug
+BREAKING CHANGE
