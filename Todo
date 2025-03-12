@@ -1,29 +1,43 @@
-
 Design Bank Account App
 -input and output from command line
 -features: deposit, withdraw, account statement
 
-Tech Stack
--DB or server storage?
--FE react?
-
+App Structure:
+Views - TBD
+Controller - transactionController
+Service - Deposit, Withdraw, PrintStatement
+ServiceImpl - D W P
+Util - validators
+Constants
 
 Todo:
-Setup Github
-Brute force:
 Main Menu
 Deposit
 Withdraw
 Print
--refactor the scanner
--handle incorrect input
--probably need to change to Springboot app
 Banking services - to calculate amount
 
-Refactor to OOP/MVC
+Done:
+Setup Github
+Brute force to get better idea
+Change to SpringBoot
+
+-------- Refactor
+OOP/MVC
 Interfaces/Abstract methods
 Close scanner?
-Security features
+
+-------- Other Considerations
+Unit Testing
+-input validation
+-negative value/assumptions for negative cash
+-sessions?
+
+Security Features
+
+Tech Stack
+-DB or server storage?
+-FE react?
 
 
 

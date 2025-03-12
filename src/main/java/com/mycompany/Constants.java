@@ -10,11 +10,13 @@ public class Constants {
                     + "[P]rint Statement" + newline
                     + "[Q]uit";
 
-    public static String startBanking =
+    public static String startBankingPrompt =
             "Welcome to AwesomeGIC Bank! What would you like to do?" + newline
                     + bankServicesPrompt;
 
     public static String continueBankingPrompt =
             "Is there anything else you'd like to do?" + newline
                     + bankServicesPrompt;
+
+//    public static String printUserInput =
 }
