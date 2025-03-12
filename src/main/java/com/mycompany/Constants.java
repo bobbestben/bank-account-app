@@ -18,5 +18,5 @@ public class Constants {
             "Is there anything else you'd like to do?" + newline
                     + bankServicesPrompt;
 
-//    public static String printUserInput =
+    public static String userInputPrompt = "Input here: ";
 }
