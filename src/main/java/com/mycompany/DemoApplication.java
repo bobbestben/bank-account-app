@@ -1,10 +1,9 @@
 package com.mycompany;
 
+import com.mycompany.controller.TransactionController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
-import java.util.Scanner;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -14,6 +13,7 @@ public class DemoApplication {
         ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
         TransactionController transactionController = context.getBean(TransactionController.class);
         transactionController.startBanking();
+        return;
 
 
 //        Scanner promptUserInput = new Scanner(System.in);

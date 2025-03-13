@@ -1,5 +1,7 @@
-package com.mycompany;
+package com.mycompany.controller;
 
+import com.mycompany.constants.Constants;
+import com.mycompany.service.TransactionService;
 import org.springframework.stereotype.Controller;
 
 import java.math.BigDecimal;
@@ -11,10 +13,11 @@ import java.util.Scanner;
 //see which functions can put to util
 @Controller
 public class TransactionController {
-    //private final TransactionService transactionService
+    private final TransactionService transactionService;
     private final Scanner scanner;
 
-    public TransactionController() {
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
         this.scanner = new Scanner(System.in);
     }
 
@@ -31,18 +34,25 @@ public class TransactionController {
     public void handleDeposit() {
         System.out.println("Please enter the amount to deposit:");
         BigDecimal amountToDeposit = readUserInputAsMoney();
-        System.out.println("Thank you. $" + formatTo2dp(amountToDeposit) + " has been deposited to your account.");
-        continueBanking();
+        if (transactionService.deposit(amountToDeposit)) {
+            System.out.println("Thank you. $" + formatTo2dp(amountToDeposit) + " has been deposited to your account.");
+            continueBanking();
+        }
     }
 
     public void handleWithdraw() {
         System.out.println("Please enter the amount to withdraw:");
         BigDecimal amountToWithdraw = readUserInputAsMoney();
-        System.out.println("Thank you. $" + formatTo2dp(amountToWithdraw) + " has been withdrawn.");
-        continueBanking();
+        if (transactionService.withdraw(amountToWithdraw)) {
+            System.out.println("Thank you. $" + formatTo2dp(amountToWithdraw) + " has been withdrawn.");
+            continueBanking();
+        }
     }
 
-    public void printAccStatement() {
+    public void printStatement() {
+        transactionService.printStatement();
+        System.out.println("Your statement has been printed");
+        continueBanking();
     }
 
     public void promptAndHandleBankingService() {
@@ -50,9 +60,12 @@ public class TransactionController {
         switch (userInput.toLowerCase()) {
             case "d" -> handleDeposit();
             case "w" -> handleWithdraw();
-            case "p" -> printAccStatement();
-            case "q" -> System.out.print("q");
-            default -> System.out.print("asd");
+            case "p" -> printStatement();
+            case "q" -> System.exit(0);
+            default -> {
+                System.out.println("Invalid option selected. Please try again");
+                promptAndHandleBankingService();
+            }
         }
     }
 

@@ -11,22 +11,19 @@ Util - validators
 Constants
 
 Todo:
-Print
-Banking services - D W P, to store and calc amt
+-format the time, and amount of spaces for $$$$ - if more digit, fewer space
 -(1)restrict user format to 2dp - think can only do validation since is cmd line, not UI
 -need to output 2 decimals - if cannot do (1), need to do rounding
+-create general handler for invalid input? then redirect to try again
 -see which functions can put to util
 -invalid options how? amount, services
--organize into folder
-
 
 -------- Other Considerations
 Close scanner?
 
 Unit Testing
--input validation
--negative value/assumptions for negative cash
--sessions?
+
+Sessions?
 
 Security Features
 
