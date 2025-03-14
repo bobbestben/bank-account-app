@@ -7,7 +7,5 @@ public interface TransactionService {
 
     boolean withdraw(BigDecimal amount);
 
-//    BigDecimal checkBalance();
-
     void printStatement();
 }

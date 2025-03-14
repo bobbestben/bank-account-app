@@ -3,6 +3,7 @@ package com.mycompany.service;
 import com.mycompany.models.Account;
 import com.mycompany.models.Transaction;
 import com.mycompany.utils.InputValidator;
+import com.mycompany.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,24 +45,27 @@ public class TransactionServiceImpl implements TransactionService {
         return true;
     }
 
-//    @Override
-//    public BigDecimal checkBalance() {
-//        return null;
-//    }
-
     @Override
     public void printStatement() {
-        // Sample Statement:
-        // Date                  | Amount  | Balance
-        // 8 Jul 2022 11:12:30AM | 500.00  | 500.00
-        // 8 Jul 2022 11:14:15AM | -100.00 | 400.00
-        System.out.println("Date                  | Amount  | Balance");
-        // need account for condition where -ve +ve amount, extra space
+        // Trailing spaces might vary
+        // Have to account for richest person's bank acc $300,000,000,000.00 = 18 char
+        // Have to account for positive/negative value = 1 extra char
+        // Right align numbers for readability
+        // Sample Statement
+        // Date                   | Amount                | Balance
+        // 15 Mar 2025 02:32:31AM |      1,000,000,000.00 |      1,000,000,000.00
+        // 15 Mar 2025 02:32:33AM |           -100,000.00 |        999,900,000.00
+
+        System.out.printf("%-22s | %-21s | %-21s%n",
+                "Date", "Amount", "Balance"
+        );
+
         for (Transaction transaction : account.getTransactions()) {
-            System.out.printf("%s | %s  | %s%n",
-                    transaction.getTimestamp(),
-                    transaction.getAmount(),
-                    transaction.getBalance());
+            System.out.printf("%22s | %21s | %21s%n",
+                    Utils.formatDate(transaction.getTimestamp()),
+                    Utils.formatBigDecimalTo2Dp(transaction.getAmount()),
+                    Utils.formatBigDecimalTo2Dp(transaction.getBalance())
+            );
         }
     }
 }

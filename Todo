@@ -11,12 +11,26 @@ Util - validators
 Constants
 
 Todo:
--format the time, and amount of spaces for $$$$ - if more digit, fewer space
+-invalid options how? amount, services
+-insufficient funds for withdrawl - prompt to try again
 -(1)restrict user format to 2dp - think can only do validation since is cmd line, not UI
 -need to output 2 decimals - if cannot do (1), need to do rounding
 -create general handler for invalid input? then redirect to try again
 -see which functions can put to util
--invalid options how? amount, services
+-unit test, test for caps/noncaps
+
+Variations from design requirements:
+- Print Statement numbers are right aligned for easier reading
+Date                   | Amount                | Balance
+15 Mar 2025 02:32:31AM |      1,000,000,000.00 |      1,000,000,000.00
+15 Mar 2025 02:32:33AM |           -100,000.00 |        999,900,000.00
+15 Mar 2025 02:32:42AM |  5,000,000,000,000.00 |  5,000,999,900,000.00
+15 Mar 2025 02:32:49AM | -1,000,000,000,000.00 |  4,000,999,900,000.00
+15 Mar 2025 02:32:51AM |               -100.00 |  4,000,999,899,900.00
+- Prompters to ask user to try again if invalid amount entered for banking services
+-- insufficient funds to withdraw
+-- any number greater than 2 d.p.
+-- any input other than D,W,P,Q at main menu
 
 -------- Other Considerations
 Close scanner?
@@ -26,19 +40,6 @@ Unit Testing
 Sessions?
 
 Security Features
-
-Tech Stack
--DB or server storage?
--FE react?
-
-
-
-
-
-
-
-
-
 
 feat fix chore docs improvement
 style refactor perf test bug

@@ -10,7 +10,6 @@ public class InputValidator {
         return amount.compareTo(BigDecimal.ZERO) > 0;
     }
 }
-
 // validate the bankServices input
 // deposit/withdraw only +ve
 // only accept 2dp
