@@ -3,43 +3,38 @@ Design Bank Account App
 -features: deposit, withdraw, account statement
 
 App Structure:
-Views - TBD
-Controller - transactionController
-Service - Deposit, Withdraw, PrintStatement
-ServiceImpl - D W P
-Util - validators
+Controller (also the View layer) - transactionController
+Service - transactionService
+ServiceImpl - transactionServiceImpl
+Util - validators, utilities
 Constants
 
 Todo:
--invalid options how? amount, services
--insufficient funds for withdrawl - prompt to try again
--(1)restrict user format to 2dp - think can only do validation since is cmd line, not UI
--need to output 2 decimals - if cannot do (1), need to do rounding
--create general handler for invalid input? then redirect to try again
+-error handling, try catch for type error inputs
 -see which functions can put to util
 -unit test, test for caps/noncaps
+-remove the springboot console messages before submitting
 
 Variations from design requirements:
 - Print Statement numbers are right aligned for easier reading
+-- numbers are right aligned for easier reading
+-- date is in dd-MMM-yyyy format to keep alignment
+-- e.g. "08 Mar 2025" is printed instead of "8 Mar 2025" to keep the alignment
 Date                   | Amount                | Balance
 15 Mar 2025 02:32:31AM |      1,000,000,000.00 |      1,000,000,000.00
 15 Mar 2025 02:32:33AM |           -100,000.00 |        999,900,000.00
 15 Mar 2025 02:32:42AM |  5,000,000,000,000.00 |  5,000,999,900,000.00
-15 Mar 2025 02:32:49AM | -1,000,000,000,000.00 |  4,000,999,900,000.00
-15 Mar 2025 02:32:51AM |               -100.00 |  4,000,999,899,900.00
 - Prompters to ask user to try again if invalid amount entered for banking services
 -- insufficient funds to withdraw
 -- any number greater than 2 d.p.
 -- any input other than D,W,P,Q at main menu
+-- lowercase/uppercase d w p q handled
+-- printStatement - no transactions
 
 -------- Other Considerations
-Close scanner?
-
 Unit Testing
-
 Sessions?
-
-Security Features
+Security Features?
 
 feat fix chore docs improvement
 style refactor perf test bug

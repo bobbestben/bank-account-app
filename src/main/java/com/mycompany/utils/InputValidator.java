@@ -7,9 +7,18 @@ import java.math.BigDecimal;
 @Component
 public class InputValidator {
     public static boolean isValidAmount(BigDecimal amount) {
-        return amount.compareTo(BigDecimal.ZERO) > 0;
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            System.out.println("Invalid amount entered. Amount must be greater than 0. Try again.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidDecimalPlaces(BigDecimal amount) {
+        if (amount.scale() > 2) {
+            System.out.println("Invalid amount entered. Amount cannot be more than 2 decimal places. Try again.");
+            return false;
+        }
+        return true;
     }
 }
-// validate the bankServices input
-// deposit/withdraw only +ve
-// only accept 2dp

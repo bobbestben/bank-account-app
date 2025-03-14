@@ -37,6 +37,8 @@ public class TransactionController {
         if (transactionService.deposit(amountToDeposit)) {
             System.out.println("Thank you. $" + formatTo2dp(amountToDeposit) + " has been deposited to your account.");
             continueBanking();
+        } else {
+            handleDeposit();
         }
     }
 
@@ -46,12 +48,13 @@ public class TransactionController {
         if (transactionService.withdraw(amountToWithdraw)) {
             System.out.println("Thank you. $" + formatTo2dp(amountToWithdraw) + " has been withdrawn.");
             continueBanking();
+        } else {
+            handleWithdraw();
         }
     }
 
     public void printStatement() {
         transactionService.printStatement();
-        System.out.println("Your statement has been printed");
         continueBanking();
     }
 
@@ -63,7 +66,7 @@ public class TransactionController {
             case "p" -> printStatement();
             case "q" -> System.exit(0);
             default -> {
-                System.out.println("Invalid option selected. Please try again");
+                System.out.println("Invalid option selected. Please try again.");
                 promptAndHandleBankingService();
             }
         }

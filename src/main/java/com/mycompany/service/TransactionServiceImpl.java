@@ -21,7 +21,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public boolean deposit(BigDecimal amount) {
         if (!InputValidator.isValidAmount(amount)) {
-            System.out.println("Invalid amount entered for deposit");
+            return false;
+        }
+        if (!InputValidator.isValidDecimalPlaces(amount)) {
             return false;
         }
         account.setBalance(account.getBalance().add(amount));
@@ -32,7 +34,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public boolean withdraw(BigDecimal amount) {
         if (!InputValidator.isValidAmount(amount)) {
-            System.out.println("Invalid amount entered for withdrawal");
+            return false;
+        }
+        if (!InputValidator.isValidDecimalPlaces(amount)) {
             return false;
         }
         if (amount.compareTo(account.getBalance()) > 0) {
@@ -47,6 +51,10 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void printStatement() {
+        if (account.getTransactions().isEmpty()) {
+            System.out.println("No statement is printed as there are no transactions under your account.");
+            return;
+        }
         // Trailing spaces might vary
         // Have to account for richest person's bank acc $300,000,000,000.00 = 18 char
         // Have to account for positive/negative value = 1 extra char
@@ -59,7 +67,6 @@ public class TransactionServiceImpl implements TransactionService {
         System.out.printf("%-22s | %-21s | %-21s%n",
                 "Date", "Amount", "Balance"
         );
-
         for (Transaction transaction : account.getTransactions()) {
             System.out.printf("%22s | %21s | %21s%n",
                     Utils.formatDate(transaction.getTimestamp()),
@@ -67,5 +74,6 @@ public class TransactionServiceImpl implements TransactionService {
                     Utils.formatBigDecimalTo2Dp(transaction.getBalance())
             );
         }
+        System.out.println("Your statement has been printed.");
     }
 }
