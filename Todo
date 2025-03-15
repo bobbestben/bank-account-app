@@ -10,9 +10,15 @@ Util - validators, utilities
 Constants
 
 Todo:
--see which functions can put to util
 -unit test, test for caps/noncaps
--remove the springboot console messages before submitting
+-readme
+
+Unit Test:
+Deposits
+testDeposit_validAmount_shouldIncreaseBalance
+Withdrawals
+PrintStatement with richestman
+
 
 Variations from design requirements:
 - Print Statement numbers are right aligned for easier reading

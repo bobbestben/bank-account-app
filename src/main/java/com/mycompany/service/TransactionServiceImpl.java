@@ -56,8 +56,7 @@ public class TransactionServiceImpl implements TransactionService {
             return;
         }
         // Trailing spaces might vary
-        // Have to account for richest person's bank acc $300,000,000,000.00 = 18 char
-        // Have to account for positive/negative value = 1 extra char
+        // Have to account for large numbers, negative value
         // Right align numbers for readability
         // Sample Statement
         // Date                   | Amount                | Balance
