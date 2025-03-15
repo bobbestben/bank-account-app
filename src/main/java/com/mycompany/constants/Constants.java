@@ -19,4 +19,7 @@ public class Constants {
                     + bankServicesPrompt;
 
     public static String userInputPrompt = "Input here: ";
+
+    public static String thankYouMessage = "Thank you for banking with AwesomeGIC Bank." + newline +
+            "Have a nice day!";
 }

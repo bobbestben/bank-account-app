@@ -8,21 +8,10 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
-        // These 2 lines repeated
-        System.out.println("hihihi");
+        System.out.println("Starting the App");
         ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
         TransactionController transactionController = context.getBean(TransactionController.class);
         transactionController.startBanking();
-        return;
-
-
-//        Scanner promptUserInput = new Scanner(System.in);
-//        String newline = System.lineSeparator();
-
-//        BankingController bankingController = new BankingController();
-
-//        bankingController.startBanking();
-
     }
 }
 

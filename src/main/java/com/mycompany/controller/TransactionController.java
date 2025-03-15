@@ -2,6 +2,8 @@ package com.mycompany.controller;
 
 import com.mycompany.constants.Constants;
 import com.mycompany.service.TransactionService;
+import com.mycompany.utils.InputValidator;
+import com.mycompany.utils.Utils;
 import org.springframework.stereotype.Controller;
 
 import java.math.BigDecimal;
@@ -23,28 +25,33 @@ public class TransactionController {
 
     public void startBanking() {
         System.out.println(Constants.startBankingPrompt);
-        promptAndHandleBankingService();
+        handleBankingService();
     }
 
     public void continueBanking() {
         System.out.println(Constants.continueBankingPrompt);
-        promptAndHandleBankingService();
+        handleBankingService();
     }
 
     public void handleDeposit() {
-        System.out.println("Please enter the amount to deposit:");
-        BigDecimal amountToDeposit = readUserInputAsMoney();
-        if (transactionService.deposit(amountToDeposit)) {
-            System.out.println("Thank you. $" + formatTo2dp(amountToDeposit) + " has been deposited to your account.");
-            continueBanking();
-        } else {
-            handleDeposit();
+        while (true) {
+            System.out.println("Please enter the amount to deposit:");
+            String userInput = scanner.nextLine();
+            if (!InputValidator.isValidBigDecimal(userInput)) {
+                continue;
+            }
+            BigDecimal amountToDeposit = Utils.convertStringToBigDecimal(userInput);
+            if (transactionService.deposit(amountToDeposit)) {
+                System.out.println("Thank you. $" + formatTo2dp(amountToDeposit) + " has been deposited to your account.");
+                break;
+            }
         }
+        continueBanking();
     }
 
     public void handleWithdraw() {
         System.out.println("Please enter the amount to withdraw:");
-        BigDecimal amountToWithdraw = readUserInputAsMoney();
+        BigDecimal amountToWithdraw = readUserInputAndConvertToBigDecimal();
         if (transactionService.withdraw(amountToWithdraw)) {
             System.out.println("Thank you. $" + formatTo2dp(amountToWithdraw) + " has been withdrawn.");
             continueBanking();
@@ -58,16 +65,19 @@ public class TransactionController {
         continueBanking();
     }
 
-    public void promptAndHandleBankingService() {
+    public void handleBankingService() {
         String userInput = scanner.nextLine();
         switch (userInput.toLowerCase()) {
             case "d" -> handleDeposit();
             case "w" -> handleWithdraw();
             case "p" -> printStatement();
-            case "q" -> System.exit(0);
+            case "q" -> {
+                System.out.print(Constants.thankYouMessage);
+                System.exit(0);
+            }
             default -> {
                 System.out.println("Invalid option selected. Please try again.");
-                promptAndHandleBankingService();
+                handleBankingService();
             }
         }
     }
@@ -78,9 +88,15 @@ public class TransactionController {
     }
 
     // big decimal for precise calculations
-    public BigDecimal readUserInputAsMoney() {
-        BigDecimal amount = scanner.nextBigDecimal();
-        scanner.nextLine(); // Consume leftover new line, if not nextLine() will return empty string ("")
-        return amount;
+    public BigDecimal readUserInputAndConvertToBigDecimal() {
+        String amount_string = scanner.nextLine();
+//        convertUserInputToBigDecimal()
+        BigDecimal amount_bigDecimal = null;
+        try {
+            amount_bigDecimal = new BigDecimal(amount_string);
+        } catch (Exception e) {
+
+        }
+        return amount_bigDecimal;
     }
 }

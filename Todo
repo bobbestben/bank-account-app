@@ -10,7 +10,6 @@ Util - validators, utilities
 Constants
 
 Todo:
--error handling, try catch for type error inputs
 -see which functions can put to util
 -unit test, test for caps/noncaps
 -remove the springboot console messages before submitting

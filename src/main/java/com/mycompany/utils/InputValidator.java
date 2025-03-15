@@ -21,4 +21,18 @@ public class InputValidator {
         }
         return true;
     }
+
+    public static boolean isValidBigDecimal(String amount) {
+        if (amount == null || amount.trim().isEmpty()) {
+            System.out.println("Amount cannot be empty. Try again.");
+            return false;
+        }
+        try {
+            new BigDecimal(amount);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Invalid amount entered. Try again.");
+            return false;
+        }
+    }
 }

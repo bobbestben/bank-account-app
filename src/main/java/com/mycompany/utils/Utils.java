@@ -11,7 +11,7 @@ public class Utils {
     public static String formatDate(LocalDateTime date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm:ssa");
         String formattedDateWithoutCaps = date.format(formatter);
-        // caps the last 2 char "am/pm" to "AM/PM"
+        // capitalize the last 2 char "am/pm" to "AM/PM"
         return formattedDateWithoutCaps.substring(0, formattedDateWithoutCaps.length() - 2)
                 + formattedDateWithoutCaps.substring(formattedDateWithoutCaps.length() - 2).toUpperCase();
     }
@@ -20,5 +20,7 @@ public class Utils {
         return String.format("%,.2f", amount);
     }
 
-
+    public static BigDecimal convertStringToBigDecimal(String string) {
+        return new BigDecimal(string);
+    }
 }
