@@ -10,14 +10,13 @@ Util - validators, utilities
 Constants
 
 Todo:
--unit test, test for caps/noncaps
--readme
+README file
+-highlight app structure
+-highlight maven build, how to build
+-highlight what is tested
+-highlight variations from design req
+Test 1 time through
 
-Unit Test:
-Deposits
-testDeposit_validAmount_shouldIncreaseBalance
-Withdrawals
-PrintStatement with richestman
 
 
 Variations from design requirements:
