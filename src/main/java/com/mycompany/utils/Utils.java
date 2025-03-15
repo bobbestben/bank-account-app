@@ -3,6 +3,7 @@ package com.mycompany.utils;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,3 +25,4 @@ public class Utils {
         return new BigDecimal(string);
     }
 }
+

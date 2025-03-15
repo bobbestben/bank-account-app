@@ -76,4 +76,9 @@ public class TransactionServiceImpl implements TransactionService {
         }
         System.out.println("Your statement has been printed.");
     }
+
+    @Override
+    public BigDecimal getAccBalance() {
+        return account.getBalance();
+    }
 }

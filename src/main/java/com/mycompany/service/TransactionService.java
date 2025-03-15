@@ -8,4 +8,6 @@ public interface TransactionService {
     boolean withdraw(BigDecimal amount);
 
     void printStatement();
+
+    BigDecimal getAccBalance();
 }

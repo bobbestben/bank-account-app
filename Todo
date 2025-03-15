@@ -25,12 +25,15 @@ Date                   | Amount                | Balance
 15 Mar 2025 02:32:42AM |  5,000,000,000,000.00 |  5,000,999,900,000.00
 - Prompters to ask user to try again if invalid amount entered for banking services
 -- insufficient funds to withdraw
+-- no funds to withdraw
+-- any invalid amounts
 -- any number greater than 2 d.p.
 -- any input other than D,W,P,Q at main menu
 -- lowercase/uppercase d w p q handled
 -- printStatement - no transactions
 
 -------- Other Considerations
+Restrict user format to 2dp - think can only do validation since is cmd line, not UI
 Unit Testing
 Sessions?
 Security Features?
